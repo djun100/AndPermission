@@ -28,7 +28,7 @@ import com.yanzhenjie.permission.sample.permission.PermissionRequest;
 /**
  * Created by Yan Zhenjie on 2017/5/1.
  */
-public class OtherActivity extends AppCompatActivity implements View.OnClickListener {
+public class OtherActivity extends BaseActivity implements View.OnClickListener {
 
     private PermissionRequest permissionRequest;
 

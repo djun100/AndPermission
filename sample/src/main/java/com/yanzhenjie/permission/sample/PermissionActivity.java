@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * Created by Yan Zhenjie on 2016/9/10.
  */
-public class PermissionActivity extends AppCompatActivity implements View.OnClickListener {
+public class PermissionActivity extends BaseActivity implements View.OnClickListener {
 
     private static final int REQUEST_CODE_PERMISSION_SD = 100;
     private static final int REQUEST_CODE_PERMISSION_OTHER = 101;

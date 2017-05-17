@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -32,10 +33,11 @@ import java.util.List;
 /**
  * Created by Yan Zhenjie on 2016/9/17.
  */
-public class ListenerActivity extends AppCompatActivity implements View.OnClickListener {
+public class ListenerActivity extends BaseActivity implements View.OnClickListener {
 
     private static final int REQUEST_CODE_PERMISSION_SD = 100;
     private static final int REQUEST_CODE_PERMISSION_OTHER = 101;
+    private static final int REQUEST_CODE_PERMISSION_PHONE = 102;
 
     private static final int REQUEST_CODE_SETTING = 300;
 
@@ -51,6 +53,7 @@ public class ListenerActivity extends AppCompatActivity implements View.OnClickL
 
         findViewById(R.id.btn_request_single).setOnClickListener(this);
         findViewById(R.id.btn_request_multi).setOnClickListener(this);
+        findViewById(R.id.mbtnPhone).setOnClickListener(this);
     }
 
     @Override
@@ -88,6 +91,13 @@ public class ListenerActivity extends AppCompatActivity implements View.OnClickL
                         .start();
                 break;
             }
+            case R.id.mbtnPhone:{
+                AndPermission.with(this)
+                        .requestCode(REQUEST_CODE_PERMISSION_PHONE)
+                        .permission(Manifest.permission.PROCESS_OUTGOING_CALLS)
+                        .callback(permissionListener)
+                        .start();
+            }
         }
     }
 
@@ -106,6 +116,9 @@ public class ListenerActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(ListenerActivity.this, R.string.message_post_succeed, Toast.LENGTH_SHORT).show();
                     break;
                 }
+                case REQUEST_CODE_PERMISSION_PHONE:{
+                    Toast.makeText(ListenerActivity.this, "有电话权限", Toast.LENGTH_SHORT).show();
+                }
             }
         }
 
@@ -120,10 +133,14 @@ public class ListenerActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(ListenerActivity.this, R.string.message_post_failed, Toast.LENGTH_SHORT).show();
                     break;
                 }
+                case REQUEST_CODE_PERMISSION_PHONE:{
+                    Toast.makeText(ListenerActivity.this, "没有电话权限", Toast.LENGTH_SHORT).show();
+                }
             }
 
             // 用户否勾选了不再提示并且拒绝了权限，那么提示用户到设置中授权。
             if (AndPermission.hasAlwaysDeniedPermission(ListenerActivity.this, deniedPermissions)) {
+                Log.w("on fail","用户勾选了不再提示并且拒绝了权限，那么提示用户到设置中授权");
                 // 第一种：用默认的提示语。
                 AndPermission.defaultSettingDialog(ListenerActivity.this, REQUEST_CODE_SETTING).show();
 
@@ -154,15 +171,4 @@ public class ListenerActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case android.R.id.home: {
-                finish();
-                break;
-            }
-        }
-        return true;
-    }
 }

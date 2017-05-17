@@ -15,13 +15,14 @@
  */
 package com.yanzhenjie.permission;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
-import com.yanzhenjie.alertdialog.AlertDialog;
+
 
 /**
  * <p>Default Setting Dialog, have the ability to open Setting.</p>
@@ -33,7 +34,7 @@ public class SettingDialog {
     private SettingService mSettingService;
 
     SettingDialog(@NonNull Context context, @NonNull SettingService settingService) {
-        mBuilder = AlertDialog.newBuilder(context)
+        mBuilder =new AlertDialog.Builder(context)
                 .setCancelable(false)
                 .setTitle(R.string.permission_title_permission_failed)
                 .setMessage(R.string.permission_message_permission_failed)

@@ -50,7 +50,7 @@
     <string name="btn_item_other">在任何地方申请权限</string>
 
     <string name="btn_req_single_calendar">申请日历权限</string>
-    <string name="btn_req_multi_sms">申请短信、SD卡权限</string>
+    <string name="btn_req_multi_sms">申请多个权限</string>
 
     <string name="message_rationale_describe">为了测试rationale效果，请您先拒绝一次权限，然后再次申请时就可以看到rationale效果。（部分小米、华为可能没有rationale效果，但是AndPermission提供了Setting。）</string>
     <string name="btn_req_location">申请定位权限</string>

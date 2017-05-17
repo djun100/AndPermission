@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * Created by Yan Zhenjie on 2016/9/10.
  */
-public class RationalePermissionActivity extends AppCompatActivity {
+public class RationalePermissionActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_PERMISSION_LOCATION = 100;
 

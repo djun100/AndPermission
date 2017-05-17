@@ -12,7 +12,7 @@ android {
 
 dependencies {
     compile rootProject.ext.dependencies.appCompat
-    compile rootProject.ext.dependencies.alertDialog
+//    compile rootProject.ext.dependencies.alertDialog
 }
 
-apply from: "../maven.gradle"
+//apply from: "../maven.gradle"
